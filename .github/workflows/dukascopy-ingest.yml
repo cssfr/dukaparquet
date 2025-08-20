@@ -2,7 +2,7 @@ name: Dukascopy gap-fill
 
 on:
   schedule:
-    - cron: '30 1 * * *'    # Every day at 01:30 UTC
+    # - cron: '30 1 * * *'    # Every day at 01:30 UTC    -- commented out to pause it && keep alive too
   workflow_dispatch:
 
 jobs:
@@ -52,10 +52,10 @@ jobs:
         run: |
           mc mirror --overwrite ohlcv_1m/ myminio/dukascopy-node/ohlcv_1m/
   
-  workflow-keepalive:
-    if: github.event_name == 'schedule'
-    runs-on: ubuntu-latest
-    permissions:
-      actions: write
-    steps:
-      - uses: liskin/gh-workflow-keepalive@v1.2.1
+  # workflow-keepalive:
+  #   if: github.event_name == 'schedule'
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     actions: write
+  #   steps:
+  #     - uses: liskin/gh-workflow-keepalive@v1.2.1
